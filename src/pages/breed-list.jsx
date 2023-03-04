@@ -4,13 +4,11 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { useBreeds } from "../hooks/use-breeds";
+
 export function BreedList() {
-  const [breeds, setBreeds] = useState([]);
-  useEffect(() => {
-    axios.get("https://dog.ceo/api/breeds/list/all").then((response) => {
-      setBreeds(Object.keys(response.data.message));
-    });
-  }, []);
+  const breeds = useBreeds();
 
   const [search, setSearch] = useState("");
   const filterBreeds = search
@@ -33,7 +31,9 @@ export function BreedList() {
         </Grid>
         {filterBreeds.map((b) => (
           <Grid key={b} item xs={3}>
-            <Button variant="contained">{b}</Button>
+            <Button variant="contained" component={Link} to={`/breed/${b}`}>
+              {b}
+            </Button>
           </Grid>
         ))}
       </Grid>

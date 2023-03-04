@@ -35,8 +35,8 @@ function App() {
     </Box>
     <Routes>
       <Route path="/" element={<BreedList />} />
-      <Route path="breed" element={<BreedDetail />} />
-      <Route path="sub-breed" element={<SubBreedDetail />} />
+      <Route path="breed/:breed" element={<BreedDetail />} />
+      <Route path="sub-breed/:breed/:subBreed" element={<SubBreedDetail />} />
     </Routes>
   </>
   );
